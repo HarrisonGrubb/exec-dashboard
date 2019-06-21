@@ -1,4 +1,20 @@
+import pandas as pd 
+import numpy as np
+import matplotlib.pyplot as plt
+import os
 
+#todo later dynamically let user select csv files
+
+file_path = os.path.join(os.path.dirname(__file__), "data", "sales_data_201904.csv")
+dataframe = pd.read_csv(file_path)
+
+total_sales = dataframe['sales price'].sum()
+
+pvt_df = dataframe.pivot_table(index= ['date'], values= ['sales price'],  aggfunc= np.sum)
+
+plt.plot(pvt_df)
+plt.show(block=False)
+input('press <ENTER> to continue')
 
 print("-----------------------")
 print("MONTH: March 2018")
